@@ -1,0 +1,353 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Check-in Widget</title>
+    <style>
+        /* Style for the button */
+        .check-in-button {
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 10px 20px;
+        }
+
+        .check-in-button:hover {
+            background-color: black;
+            border: white solid 1px;
+            border-radius: 5px;
+
+        }
+
+        /* Style for the checked-in message */
+        .checked-in-message {
+            color: white;
+        }
+
+        /* Style for the check-in count */
+        .check-in-count {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        /* Style for the refresh message */
+        .refresh-message {
+            color: #007bff;
+            text-align: center;
+        }
+
+        .mainContainer {
+            /* border: 1px solid red; */
+            padding: 1px;
+            width: 80%;
+            margin: auto;
+            border-radius: 8px;
+            /* color: #162b6f;
+            background-color: #c0ccf2; */
+            background-color: #000000;
+            /* Black background */
+            color: #fff;
+            /* White text color */
+        }
+
+        .msgContainer {
+            width: 80%;
+            margin: auto;
+            margin-top: 10px;
+        }
+
+        #subContainer {
+
+            padding: 10px;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* background-color: #162b6f;
+            color: white; */
+            background-color: #000000;
+            /* Black background */
+            color: #fff;
+            /* White text color */
+        }
+
+        .innercontainer {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .heading {
+            text-align: center;
+            font-weight: 500;
+            /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+            font-family: 'Montserrat Black', sans-serif;
+        }
+
+        #checkInCount,
+        .headingsub {
+            font-family: 'Montserrat Black', sans-serif;
+            /* Use Montserrat Black font */
+            color: #fff;
+            /* White text color */
+        }
+
+        #totalcheckIn {
+            text-align: center;
+            color: white;
+        }
+
+        #checkInCount {
+            font-size: xx-large;
+            color: white;
+            font-size: 20;
+        }
+
+        #checkedInMessage {
+            color: #fff;
+            /* color: lightyellow; */
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .headingsub {
+            font-size: 14px;
+            color: lightyellow;
+            font-style: italic;
+        }
+
+        .tracking-in-contract {
+            -webkit-animation: tracking-in-contract 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+            animation: tracking-in-contract 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+        }
+
+
+        @-webkit-keyframes tracking-in-contract {
+            0% {
+                letter-spacing: 1em;
+                opacity: 0;
+            }
+
+            40% {
+                opacity: 0.6;
+            }
+
+            100% {
+                letter-spacing: normal;
+                opacity: 1;
+            }
+        }
+
+        @keyframes tracking-in-contract {
+            0% {
+                letter-spacing: 1em;
+                opacity: 0;
+            }
+
+            40% {
+                opacity: 0.6;
+            }
+
+            100% {
+                letter-spacing: normal;
+                opacity: 1;
+            }
+        }
+
+        .slide-in-right {
+            -webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+
+
+        @-webkit-keyframes slide-in-right {
+            0% {
+                -webkit-transform: translateX(1000px);
+                transform: translateX(1000px);
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide-in-right {
+            0% {
+                -webkit-transform: translateX(1000px);
+                transform: translateX(1000px);
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="mainContainer">
+
+        <h2 class="heading tracking-in-contract">
+            LOCKED CHECK-IN
+        </h2>
+
+    </div>
+
+    <div class="msgContainer">
+
+        <div id="subContainer" class="slide-in-right">
+            <div class="innercontainer">
+
+                <div>
+                    <button id="checkInButton" class="check-in-button">CONFIRM LOCK</button>
+                    <div id="checkedInMessage" class="checked-in-message">LOCK CONFIRMED</div>
+
+                </div>
+
+                <div id="totalcheckIn">
+                    <div id="checkInCount" class="check-in-count">0</div>
+                    <div class="headingsub">Chastities Locked Tight for Today</div>
+                </div>
+
+            </div>
+        </div>
+        <div id="refreshMessage" class="refresh-message">Refreshing...</div>
+    </div>
+
+    <!-- Button for checking in -->
+    <!-- <button id="checkInButton" class="check-in-button">Check-in</button> -->
+
+    <!-- Message displayed after checking in -->
+
+    <!-- Display the check-in count -->
+
+
+    <script>
+        const baseUrl = "https://widget-server-mu.vercel.app"
+        // const baseUrl = "http://localhost:8000"
+        document.addEventListener("DOMContentLoaded", async () => {
+            // Check if user has already checked in today
+            document.getElementById('checkInButton').style.display = 'none';
+            document.getElementById('checkedInMessage').style.display = 'none';
+            document.getElementById('totalcheckIn').style.display = 'none';
+            document.getElementById('subContainer').style.display = 'none';
+
+            let isDataFetched = false
+
+            async function fetchTotalCheckInCount() {
+                try {
+
+                    const response = await fetch(`${baseUrl}/api/total_checkins`)
+                    console.log(response)
+                    if (response.ok) {
+                        isDataFetched = true
+                        const data = await response.json(); // Parse response body as JSON
+                        console.log(data)
+                        return data.totalCheckInCount
+                    }
+
+                } catch (error) {
+                    console.log(error)
+                    isDataFetched = false
+                    console.error('Error fetching check-in count:', error)
+                }
+
+            }
+
+
+            // Display the total check-in count on page load
+            const count = await fetchTotalCheckInCount();
+            if (isDataFetched) {
+                document.getElementById('checkInCount').textContent = count;
+                localStorage.setItem('checkInCount', count);
+
+                document.getElementById('refreshMessage').style.display = 'none';
+                document.getElementById('subContainer').style.display = 'block';
+                document.getElementById('totalcheckIn').style.display = 'block';
+
+
+                if (localStorage.getItem('checkedInDate') === new Date().toLocaleDateString()) {
+                    document.getElementById('checkInButton').style.display = 'none';
+                    document.getElementById('checkedInMessage').style.display = 'block';
+                } else {
+                    document.getElementById('checkInButton').style.display = 'block';
+                    document.getElementById('checkedInMessage').style.display = 'none';
+                }
+            }
+            // Display the check-in count
+
+            // Add event listener for the check-in button
+            document.getElementById('checkInButton').addEventListener('click', async function () {
+                // Update check-in count
+                let count = await fetchTotalCheckInCount();
+                console.log("yes")
+                if (!isDataFetched) {
+                    console.log("return")
+                    return
+                }
+                console.log("not")
+                count++;
+
+                // Mark as checked in for today
+
+                // Hide button and display checked-in message
+
+                // Send check-in data to server
+                fetch(`${baseUrl}/api/add_checkin`, { method: 'POST' })
+                    .then(response => {
+                        if (response.ok) {
+                            localStorage.setItem('checkInCount', count);
+                            document.getElementById('checkInCount').textContent = count;
+                            localStorage.setItem('checkedInDate', new Date().toLocaleDateString());
+                            this.style.display = 'none';
+                            document.getElementById('checkedInMessage').style.display = 'block';
+
+                        }
+                    })
+                    .catch(error => console.error('Error checking in:', error));
+            });
+
+
+            // // Auto-refresh at midnight
+            setInterval(function () {
+                // Check if it's midnight
+                let now = new Date();
+
+                if (now.getHours() === 0 && now.getMinutes() === 0) {
+                    console.log("referesh enter")
+                    setTimeout(async () => {
+                        localStorage.setItem('checkInCount', 0);
+                        document.getElementById('checkInCount').textContent = 0;
+                        localStorage.removeItem('checkedInDate');
+                        try {
+
+                            const response = await fetch(`${baseUrl}/api/reset-checkins`, { method: 'POST' })
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            const data = await response.json(); // Parse response body as JSON
+                            console.log(data)
+                        } catch (error) {
+                            console.error('Error reset check-in count:', error)
+                        }
+                        // Refresh the page after a short delay
+
+                        window.location.reload();
+                    }, 5000); // Adjust the delay as needed
+                }
+            }, 60000); // Check every minute for midnight
+        });
+    </script>
+</body>
+
+</html>
