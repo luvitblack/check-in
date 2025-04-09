@@ -1,0 +1,369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; min-height: 15.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Daily Check-in Widget&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Style for the button */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.check-in-button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.check-in-button:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: black;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: white solid 1px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 5px;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Style for the checked-in message */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.checked-in-message {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Style for the check-in count */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.check-in-count {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #007bff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Style for the refresh message */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.refresh-message {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #007bff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.mainContainer {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/* border: 1px solid red; */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 80%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/* color: #162b6f;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #c0ccf2; */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #000000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/* Black background */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/* White text color */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.msgContainer {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 80%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#subContainer {</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/* background-color: #162b6f;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white; */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #000000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/* Black background */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/* White text color */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.innercontainer {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-around;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.heading {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Montserrat Black', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#checkInCount,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.headingsub {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Montserrat Black', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/* Use Montserrat Black font */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/* White text color */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#totalcheckIn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#checkInCount {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: xx-large;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 20;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#checkedInMessage {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/* color: lightyellow; */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.2rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.headingsub {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: lightyellow;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-style: italic;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.tracking-in-contract {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-animation: tracking-in-contract 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: tracking-in-contract 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@-webkit-keyframes tracking-in-contract {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>letter-spacing: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>40% {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opacity: 0.6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>letter-spacing: normal;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opacity: 1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes tracking-in-contract {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>letter-spacing: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>40% {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opacity: 0.6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>letter-spacing: normal;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opacity: 1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.slide-in-right {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@-webkit-keyframes slide-in-right {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>-webkit-transform: translateX(1000px);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>transform: translateX(1000px);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>-webkit-transform: translateX(0);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>transform: translateX(0);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opacity: 1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes slide-in-right {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>-webkit-transform: translateX(1000px);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>transform: translateX(1000px);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>-webkit-transform: translateX(0);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>transform: translateX(0);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opacity: 1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="mainContainer"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="heading tracking-in-contract"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>LOCKED CHECK-IN</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/h2&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="msgContainer"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="subContainer" class="slide-in-right"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="innercontainer"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="checkInButton" class="check-in-button"&gt;CONFIRM LOCK&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="checkedInMessage" class="checked-in-message"&gt;LOCK CONFIRMED&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="totalcheckIn"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="checkInCount" class="check-in-count"&gt;0&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="headingsub"&gt;Chastities Locked Tight for Today&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="refreshMessage" class="refresh-message"&gt;Refreshing...&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Button for checking in --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- &lt;button id="checkInButton" class="check-in-button"&gt;Check-in&lt;/button&gt; --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Message displayed after checking in --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Display the check-in count --&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const baseUrl = "https://widget-server-mu.vercel.app"</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// const baseUrl = "http://localhost:8000"</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener("DOMContentLoaded", async () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Check if user has already checked in today</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('checkInButton').style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('checkedInMessage').style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('totalcheckIn').style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('subContainer').style.display = 'none';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let isDataFetched = false</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>async function fetchTotalCheckInCount() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>try {</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const response = await fetch(`${baseUrl}/api/total_checkins`)</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.log(response)</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (response.ok) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>isDataFetched = true</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const data = await response.json(); // Parse response body as JSON</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>console.log(data)</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>return data.totalCheckInCount</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.log(error)</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>isDataFetched = false</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.error('Error fetching check-in count:', error)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Display the total check-in count on page load</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const count = await fetchTotalCheckInCount();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (isDataFetched) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('checkInCount').textContent = count;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>localStorage.setItem('checkInCount', count);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('refreshMessage').style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('subContainer').style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('totalcheckIn').style.display = 'block';</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (localStorage.getItem('checkedInDate') === new Date().toLocaleDateString()) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('checkInButton').style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('checkedInMessage').style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('checkInButton').style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('checkedInMessage').style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Display the check-in count</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Add event listener for the check-in button</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('checkInButton').addEventListener('click', async function () {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Update check-in count</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let count = await fetchTotalCheckInCount();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.log("yes")</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!isDataFetched) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.log("return")</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.log("not")</p>
+<p class="p1"><span class="Apple-converted-space">                </span>count++;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Mark as checked in for today</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Hide button and display checked-in message</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Send check-in data to server</p>
+<p class="p1"><span class="Apple-converted-space">                </span>fetch(`${baseUrl}/api/add_checkin`, { method: 'POST' })</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>.then(response =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (response.ok) {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>localStorage.setItem('checkInCount', count);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>document.getElementById('checkInCount').textContent = count;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>localStorage.setItem('checkedInDate', new Date().toLocaleDateString());</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>this.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>document.getElementById('checkedInMessage').style.display = 'block';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>})</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>.catch(error =&gt; console.error('Error checking in:', error));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// // Auto-refresh at midnight</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setInterval(function () {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Check if it's midnight</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let now = new Date();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (now.getHours() === 0 &amp;&amp; now.getMinutes() === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.log("referesh enter")</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>setTimeout(async () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>localStorage.setItem('checkInCount', 0);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>document.getElementById('checkInCount').textContent = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>localStorage.removeItem('checkedInDate');</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>try {</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const response = await fetch(`${baseUrl}/api/reset-checkins`, { method: 'POST' })</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>if (!response.ok) {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>throw new Error('Network response was not ok');</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const data = await response.json(); // Parse response body as JSON</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>console.log(data)</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>console.error('Error reset check-in count:', error)</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Refresh the page after a short delay</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>window.location.reload();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}, 5000); // Adjust the delay as needed</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, 60000); // Check every minute for midnight</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
